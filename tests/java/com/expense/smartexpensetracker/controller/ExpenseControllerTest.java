@@ -271,5 +271,23 @@ class ExpenseControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.total").value(550.0));
     }
+    @Test
+    @DisplayName("Should reject invalid month")
+    void shouldRejectInvalidMonth() throws Exception {
+
+        mockMvc.perform(get("/expenses/monthly")
+                        .param("year", "2026")
+                        .param("month", "13"))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    @DisplayName("Should reject month zero")
+    void shouldRejectMonthZero() throws Exception {
+
+        mockMvc.perform(get("/expenses/monthly")
+                        .param("year", "2026")
+                        .param("month", "0"))
+                .andExpect(status().isBadRequest());
+    }
 
 }

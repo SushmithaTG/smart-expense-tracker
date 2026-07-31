@@ -65,7 +65,7 @@ smart-expense-tracker
 | GET    | `/expenses/total`               | Get total expenses       |
 | GET    | `/expenses/total/{category}`    | Get total by category    |
 | DELETE | `/expenses/{id}`                | Delete an expense        |
-| GET | `/expenses/summary/{year}/{month}` | Get total expenses for a month |
+| GET | `/expenses/monthly?year={year}&month={month}` | Get total expenses for a month |
 
 
 ## ⭐ Bonus Feature
@@ -75,13 +75,7 @@ smart-expense-tracker
 The API includes a monthly summary endpoint:
 
 ```text
-GET /expenses/summary/{year}/{month}
-```
-
-### Example:
-
-```text
-GET /expenses/summary/2026/7
+GET /expenses/monthly?year={year}&month={month}
 ```
 
 ### Example response:

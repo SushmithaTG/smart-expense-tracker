@@ -53,6 +53,11 @@ public class ExpenseService {
         repository.delete(expense);
     }
     public double getMonthlyTotal(int year, int month) {
+
+        if (month < 1 || month > 12) {
+            throw new IllegalArgumentException("Month must be between 1 and 12");
+        }
+
         return repository.findAll()
                 .stream()
                 .filter(expense -> expense.getDate().getYear() == year

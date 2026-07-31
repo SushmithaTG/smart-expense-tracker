@@ -68,7 +68,7 @@ The test command used was:
 ```
 The test suite completed successfully with:
 
-- Tests run: 17
+- Tests run: 20
 - Failures: 0
 - Errors: 0
 - Skipped: 0
