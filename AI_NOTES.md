@@ -68,7 +68,7 @@ The test command used was:
 ```
 The test suite completed successfully with:
 
-- Tests run: 16
+- Tests run: 17
 - Failures: 0
 - Errors: 0
 - Skipped: 0
@@ -80,8 +80,17 @@ I considered several suggestions during development that I decided not to includ
 **1. Database integration**
 AI suggested that the project could use a database such as MySQL or H2. I did not add a database because the assignment explicitly allows in-memory storage or a local JSON file and states that a database is not required. Keeping the application in memory also keeps the implementation simple and focused on the required REST API functionality.
 
-**2. Additional bonus functionality**
-AI suggested adding optional features such as search functionality or Swagger/OpenAPI documentation. I did not add an optional bonus feature because the required functionality was the priority, and the assignment states that bonus functionality is optional.
+**2. Search functionality**
+AI suggested adding a search endpoint. I decided not to implement search because I selected monthly summary as the single optional bonus feature.
 
 **3. Changing the endpoint design**
 AI suggested using query parameters such as `/expenses?category=Food` for category filtering. I decided to keep category filtering as path-variable endpoints instead — `/expenses/category/{category}` and `/expenses/total/{category}` — because this design is simple, readable, and works correctly for the required functionality.
+
+
+## Bonus Feature
+
+I implemented the monthly summary bonus feature:
+
+`GET /expenses/summary/{year}/{month}`
+
+I chose this feature because the existing Expense model already uses `LocalDate`, making monthly filtering straightforward.

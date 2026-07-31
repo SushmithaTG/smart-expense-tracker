@@ -51,8 +51,17 @@ public class ExpenseService {
 
         repository.delete(expense);
     }
+    public double getMonthlyTotal(int year, int month) {
+        return repository.findAll()
+                .stream()
+                .filter(expense -> expense.getDate().getYear() == year)
+                .filter(expense -> expense.getDate().getMonthValue() == month)
+                .mapToDouble(Expense::getAmount)
+                .sum();
+    }
     public void clearExpenses() {
         repository.clear();
         nextId = 1L;
     }
+
 }

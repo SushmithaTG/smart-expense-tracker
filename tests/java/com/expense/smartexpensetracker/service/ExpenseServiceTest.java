@@ -179,4 +179,37 @@ class ExpenseServiceTest {
 
         verify(repository).findById(999L);
     }
+    @Test
+    void shouldCalculateMonthlyTotal() {
+
+        Expense expense1 = new Expense(
+                "Pizza",
+                250.0,
+                "Food",
+                LocalDate.of(2026, 7, 10)
+        );
+
+        Expense expense2 = new Expense(
+                "Movie",
+                300.0,
+                "Entertainment",
+                LocalDate.of(2026, 7, 20)
+        );
+
+        Expense expense3 = new Expense(
+                "Books",
+                500.0,
+                "Education",
+                LocalDate.of(2026, 8, 5)
+        );
+
+        when(repository.findAll())
+                .thenReturn(List.of(expense1, expense2, expense3));
+
+        double total = service.getMonthlyTotal(2026, 7);
+
+        assertEquals(550.0, total);
+
+        verify(repository).findAll();
+    }
 }

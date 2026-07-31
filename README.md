@@ -65,6 +65,32 @@ smart-expense-tracker
 | GET    | `/expenses/total`               | Get total expenses       |
 | GET    | `/expenses/total/{category}`    | Get total by category    |
 | DELETE | `/expenses/{id}`                | Delete an expense        |
+| GET | `/expenses/summary/{year}/{month}` | Get total expenses for a month |
+
+
+## ⭐ Bonus Feature
+
+### Monthly Expense Summary
+
+The API includes a monthly summary endpoint:
+
+```text
+GET /expenses/summary/{year}/{month}
+```
+
+### Example:
+
+```text
+GET /expenses/summary/2026/7
+```
+
+### Example response:
+
+```json
+{
+"total": 550.0
+}
+```
 
 
 ## 📝 Example Request
@@ -147,6 +173,7 @@ The test source directory is configured as `tests/java` in `pom.xml`
 - Mockito-based repository mocking
 - Validation tests
 - Exception handling tests
+
 
 ## 📌 Project Status
 
