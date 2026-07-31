@@ -1,0 +1,8 @@
+package com.expense.smartexpensetracker.exception;
+
+public class ExpenseNotFoundException extends RuntimeException {
+
+    public ExpenseNotFoundException(String message) {
+        super(message);
+    }
+}

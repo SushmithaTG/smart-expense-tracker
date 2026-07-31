@@ -19,7 +19,7 @@ public class ExpenseRepository {
     }
 
     public List<Expense> findAll() {
-        return expenses;
+        return new ArrayList<>(expenses);
     }
 
     public Optional<Expense> findById(Long id) {
@@ -36,5 +36,8 @@ public class ExpenseRepository {
 
     public void delete(Expense expense) {
         expenses.remove(expense);
+    }
+    public void clear() {
+        expenses.clear();
     }
 }

@@ -1,11 +1,11 @@
 package com.expense.smartexpensetracker.service;
 
+import com.expense.smartexpensetracker.exception.ExpenseNotFoundException;
 import com.expense.smartexpensetracker.model.Expense;
 import com.expense.smartexpensetracker.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ExpenseService {
@@ -45,15 +45,14 @@ public class ExpenseService {
                 .sum();
     }
 
-    public boolean deleteExpense(Long id) {
+    public void deleteExpense(Long id) {
+        Expense expense = repository.findById(id)
+                .orElseThrow(() -> new ExpenseNotFoundException("Expense with ID " + id + " not found"));
 
-        Optional<Expense> expense = repository.findById(id);
-
-        if (expense.isPresent()) {
-            repository.delete(expense.get());
-            return true;
-        }
-
-        return false;
+        repository.delete(expense);
+    }
+    public void clearExpenses() {
+        repository.clear();
+        nextId = 1L;
     }
 }
