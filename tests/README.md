@@ -21,4 +21,10 @@ The tests can be executed from the project root with:
 ```bash
 .\mvnw.cmd test
 ```
+### On Linux/macOS:
+
+```bash
+./mvnw test
+```
+
 

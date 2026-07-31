@@ -122,6 +122,13 @@ cd smart-expense-tracker
 .\mvnw.cmd test
 ```
 
+
+### On Linux/macOS:
+
+```bash
+./mvnw test
+```
+
 ### The project includes:
 
 - Controller tests using MockMvc
