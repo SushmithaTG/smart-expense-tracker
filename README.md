@@ -29,22 +29,30 @@ A Spring Boot REST API for managing and tracking personal expenses.
 ## 📂 Project Structure
 
 ```text
-src
-├── main
-│   └── java
-│       └── com.expense.smartexpensetracker
-│           ├── controller
-│           ├── dto
-│           ├── exception
-│           ├── model
-│           ├── repository
-│           └── service
+
+smart-expense-tracker
+├── README.md
+├── AI_NOTES.md
+├── pom.xml
+├── src
+│   └── main
+│       └── java
+│           └── com.expense.smartexpensetracker
+│               ├── controller
+│               ├── dto
+│               ├── exception
+│               ├── model
+│               ├── repository
+│               └── service
 │
-└── test
+└── tests
     └── java
         └── com.expense.smartexpensetracker
+            ├── SmartExpenseTrackerApplicationTests.java
             ├── controller
+            │   └── ExpenseControllerTest.java
             └── service
+                └── ExpenseServiceTest.java
             
  ```
             
@@ -110,11 +118,14 @@ cd smart-expense-tracker
 ./mvnw spring-boot:run
 ```
 
-### The application will run at:
-### http://localhost:8080
+The application will run at:
+
+`http://localhost:8080`
 
 
 ## 🧪 Run Tests
+
+The test source directory is configured as `tests/java` in `pom.xml`
 
 ### On Windows:
 
