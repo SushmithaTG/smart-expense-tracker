@@ -40,10 +40,11 @@ public class ExpenseController {
     public ResponseEntity<TotalResponse> getTotalExpenses() {
         return ResponseEntity.ok(new TotalResponse(service.getTotalExpenses()));
     }
-    @GetMapping("/summary/{year}/{month}")
+    
+    @GetMapping("/monthly")
     public ResponseEntity<TotalResponse> getMonthlyTotal(
-            @PathVariable int year,
-            @PathVariable int month) {
+            @RequestParam int year,
+            @RequestParam int month) {
 
         return ResponseEntity.ok(
                 new TotalResponse(service.getMonthlyTotal(year, month))

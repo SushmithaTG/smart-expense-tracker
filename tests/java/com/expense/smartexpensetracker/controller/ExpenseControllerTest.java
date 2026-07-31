@@ -19,7 +19,13 @@ import java.time.LocalDate;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+
+
+
+
 @SpringBootTest
 @AutoConfigureMockMvc
 class ExpenseControllerTest {
@@ -218,6 +224,52 @@ class ExpenseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isBadRequest());
+    }
+    @Test
+    @DisplayName("Should calculate monthly total")
+    void shouldGetMonthlyTotal() throws Exception {
+
+        Expense expense1 = new Expense(
+                "Pizza",
+                250.0,
+                "Food",
+                LocalDate.of(2026, 7, 10)
+        );
+
+        Expense expense2 = new Expense(
+                "Movie",
+                300.0,
+                "Entertainment",
+                LocalDate.of(2026, 7, 20)
+        );
+
+        Expense expense3 = new Expense(
+                "Books",
+                500.0,
+                "Education",
+                LocalDate.of(2026, 8, 5)
+        );
+
+        mockMvc.perform(post("/expenses")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(expense1)))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/expenses")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(expense2)))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/expenses")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(expense3)))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/expenses/monthly")
+                        .param("year", "2026")
+                        .param("month", "7"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.total").value(550.0));
     }
 
 }

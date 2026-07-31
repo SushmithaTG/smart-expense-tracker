@@ -4,6 +4,7 @@ import com.expense.smartexpensetracker.exception.ExpenseNotFoundException;
 import com.expense.smartexpensetracker.model.Expense;
 import com.expense.smartexpensetracker.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class ExpenseService {
     public double getMonthlyTotal(int year, int month) {
         return repository.findAll()
                 .stream()
-                .filter(expense -> expense.getDate().getYear() == year)
-                .filter(expense -> expense.getDate().getMonthValue() == month)
+                .filter(expense -> expense.getDate().getYear() == year
+                        && expense.getDate().getMonthValue() == month)
                 .mapToDouble(Expense::getAmount)
                 .sum();
     }
